@@ -1,0 +1,9 @@
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.tfvars.json
+__pycache__/
+.python-version
+.venv/
+local.settings.json

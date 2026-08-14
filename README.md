@@ -72,3 +72,4 @@ This gives a concrete basis for the conversation with the SIEM team: you can sho
 
 If the SIEM team's primary interest is "who changed what in the GitHub admin settings," Option 1 covers that with no infrastructure to own. If they need code push activity, pipeline run status, or security alerts, they need Option 2.
 foo
+foo

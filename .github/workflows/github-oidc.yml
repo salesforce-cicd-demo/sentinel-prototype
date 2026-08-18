@@ -1,0 +1,29 @@
+name: GitHub OIDC
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/github-oidc.yml"
+    #   - "app/**" # would probably be force-app/* in a more realistic SF app repo
+
+jobs:
+  github-oidc:
+    name: GitHub OIDC
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # required for the azure login
+    steps:
+      - name: Azure login (OIDC — no stored credentials)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Fetch secrets from key vault
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          az keyvault secret list --vault-name kv-salesforce-cicd-demo
